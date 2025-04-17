@@ -5,7 +5,17 @@ const atividades = [];
 const notas = [];
 const spanAprovado = '<span class="resultado aprovado">Aprovado</span>';
 const spanReprovado = '<span class="resultado reprovado">Reprovado</span>';
-const notaMinima = parseFloat(prompt('Digite a nota minima:'));
+const notaMinima = obterNotaMinima();
+
+function obterNotaMinima(mensagem = 'Digite a nota mínima:') {
+    let nota;
+
+    do {
+        const entrada = prompt(mensagem).replace(',', '.');
+        nota = parseFloat(entrada);
+    } while (isNaN(nota));
+    return nota;
+}
 
 let linhas = '';
 
@@ -22,7 +32,7 @@ function adicionaLinha(){
     const inputNotaAtividade = document.getElementById('nota-atividade');
 
     if (atividades.includes(inputNomeAtividade.value)){
-        alert(`A atividade: ${inputNomeAtividade.value} já foi inserida`);
+        alert(`A atividade: ${inputNomeAtividade.value} já foi inserida`)
     } else {
         atividades.push(inputNomeAtividade.value);
         notas.push(parseFloat(inputNotaAtividade.value));
